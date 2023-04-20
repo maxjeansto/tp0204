@@ -123,27 +123,53 @@ const Curriculum = () => {
                     </Typography>
                     <Accordion>
                         <AccordionSummary expandIcon={<ExpandMore />}>
-                            <Typography variant="subtitle1">Master en Informatique - Université XYZ</Typography>
+                            <Typography  sx={{ mr: 3, fontWeight: "bold" }} variant="subtitle1">BAC - Ecole Moria </Typography>
                             <Typography variant="subtitle2" color="text.secondary">
-                                2016 à 2018
+                                1999
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography variant="body1">
-                                Description de la formation et des compétences acquises.
+                               Bac S
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>
                         <AccordionSummary expandIcon={<ExpandMore />}>
-                            <Typography variant="subtitle1">Licence en Informatique - Université ABC</Typography>
+                            <Typography  sx={{ mr: 3, fontWeight: "bold" }} variant="subtitle1">Formation D'InfoGraphie -  Ecole MJM Graphic Design</Typography>
                             <Typography variant="subtitle2" color="text.secondary">
-                                2013 à 2016
+                                2000 - 2001
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography variant="body1">
-                                Description de la formation et des compétences acquises.
+                                Maitrise de photoshop, Illustrator et apprentissage a l'integration Web
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+                    <Accordion>
+                        <AccordionSummary expandIcon={<ExpandMore />}>
+                            <Typography  sx={{ mr: 3, fontWeight: "bold" }} variant="subtitle1">Formation D'Etat -  MySql et Html</Typography>
+                            <Typography variant="subtitle2" color="text.secondary">
+                                2006
+                            </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography variant="body1">
+                               Formation de HTML 5 et Mysql.
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+                    <Accordion>
+                        <AccordionSummary expandIcon={<ExpandMore />}>
+                            <Typography  sx={{ mr: 3, fontWeight: "bold" }} variant="subtitle1">Formatio Full Stack</Typography>
+                            <Typography variant="subtitle2" color="text.secondary">
+                                2006
+                            </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography variant="body1">
+                               Aprrentissage de JS, React, NodeJS, MongoDB. Perfectionnement dans CSS/HTML 5 et Mysql
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
