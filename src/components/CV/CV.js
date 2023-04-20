@@ -164,7 +164,7 @@ const Curriculum = () => {
                         <AccordionSummary expandIcon={<ExpandMore />}>
                             <Typography  sx={{ mr: 3, fontWeight: "bold" }} variant="subtitle1">Formatio Full Stack</Typography>
                             <Typography variant="subtitle2" color="text.secondary">
-                                2006
+                                2023
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
