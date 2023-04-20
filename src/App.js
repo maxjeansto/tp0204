@@ -1,5 +1,5 @@
 import './App.css';
-import {Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import ListStudents from './components/List';
 import Counter from './components/Counter';
 import Toggle from './components/Toggle';
@@ -10,7 +10,8 @@ import Portfolio from './components/Portfolio';
 
 function App() {
   return (
-   <Routes>
+    <Routes>
+      <Route path="/" element={<Portfolio />} />
       <Route path="/list" element={<ListStudents />} />
       <Route path="/counter" element={<Counter />} />
       <Route path="/toogle" element={<Toggle />} />
@@ -18,7 +19,7 @@ function App() {
       <Route path="/useffect" element={<UseEffectCompo />} />
       <Route path="/cv" element={<CurriCulum />} />
       <Route path="/portfolio" element={<Portfolio />} />
-   </Routes>
+    </Routes>
   );
 }
 
