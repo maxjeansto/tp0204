@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Box, Grid, Card, CardContent, Typography, CardMedia } from "@mui/material";
+import {Link} from "react-router-dom"
+import { Link as MuiLink } from '@mui/material';
+
 
 const UseEffectCompo = () => {
 
@@ -12,7 +15,7 @@ const UseEffectCompo = () => {
             params: {
                 "AD_PageNbr": "1",
                 "AD_PageSize": "500"
-            }
+            } 
 
         }).then(function (response) {
             console.log(response.data);
@@ -25,7 +28,18 @@ const UseEffectCompo = () => {
         <Box maxWidth="sm" sx={{ textAlign: "center", mt: 8, margin: '0 auto' }}>
       <Grid container spacing={4} justifyContent="center" sx={{mt: 3, mb: 2}}>
         {data?.map((data, index) => (
-          <Grid item xs={12} sm={12} md={12} key={index}>
+         <MuiLink
+         key={data.id}
+         component={Link}
+         to={`/article/${data.id}`}
+         sx={{
+           textDecoration: 'none',
+           '&:hover': {
+             textDecoration: 'underline',
+           },
+         }}
+       >
+          <Grid item xs={12} sm={12} md={12} >
             <Card sx={{ maxWidth: 600 }}>
               <CardMedia
                 sx={{ height: 240 }}
@@ -45,6 +59,7 @@ const UseEffectCompo = () => {
                 </Typography>
             </Card>
           </Grid>
+          </MuiLink>
         ))}
       </Grid>
     </Box>
