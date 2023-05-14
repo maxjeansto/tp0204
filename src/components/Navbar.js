@@ -82,6 +82,7 @@ function Navbar() {
 
   const drawer = (
     <List>
+      <ListItem> <DropI18N sx={{color: 'black'}} /></ListItem>
       {mainLinks
         .filter((link) => isAuth || !link.authRequired)
         .map((link, index) => (
@@ -119,7 +120,9 @@ function Navbar() {
               </ListItem>
             ))}
         </List>
+
       </Collapse>
+      
     </List>
   );
 

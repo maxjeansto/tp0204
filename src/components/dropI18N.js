@@ -29,7 +29,7 @@ const DropI18N = () => {
     return (
         <>
             <IconButton onClick={handleClickMenu}>
-                <LanguageIcon sx={{color: 'white'}} />
+                <LanguageIcon sx={{color: 'inherite'}} />
             </IconButton>
             <Menu
                 anchorEl={anchorEl}
