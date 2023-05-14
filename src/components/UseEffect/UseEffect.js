@@ -3,11 +3,13 @@ import axios from "axios";
 import { Box, Grid, Card, CardContent, Typography, CardMedia } from "@mui/material";
 import {Link} from "react-router-dom"
 import { Link as MuiLink } from '@mui/material';
+import i18n from "../../i18n/config";
 
 
 const UseEffectCompo = () => {
 
     const [data, setdata] = useState();
+    const [language, setLanguage] = useState('fr');
 
     useEffect(() => {
         console.log("Mon composant est monté")
@@ -23,6 +25,21 @@ const UseEffectCompo = () => {
         });
 
     }, [])
+
+    useEffect(() => {
+      const handleChangeLanguage = () => {
+        // La langue a changé, faites quelque chose ici...
+        console.log('La langue a changé ! Nouvelle langue :', i18n.language);
+        setLanguage(i18n.language)
+      };
+  
+      i18n.on('languageChanged', handleChangeLanguage);
+  
+      // Nettoyage : supprime l'écouteur d'événement lorsque le composant est démonté
+      return () => {
+        i18n.off('languageChanged', handleChangeLanguage);
+      };
+    }, [i18n]);
 
     return (
         <Box maxWidth="sm" sx={{ textAlign: "center", mt: 8, margin: '0 auto' }}>
@@ -48,10 +65,28 @@ const UseEffectCompo = () => {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  {data.title}
+                {(() => { 
+                    if (language === 'fr') {
+                      return data.title;
+                    } else if (language === 'en') {
+                      return data.title_en;
+                    } else if (language === 'he') {
+                      return data.title_he;
+                    }
+    
+                      })()}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {data.article}
+                {(() => { 
+                    if (language === 'fr') {
+                      return data.article;
+                    } else if (language === 'en') {
+                      return data.article_en;
+                    } else if (language === 'he') {
+                      return data.article_he;
+                    }
+    
+                      })()}
                 </Typography>
               </CardContent>
               <Typography variant="subtitle2" color="text.secondary">

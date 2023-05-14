@@ -1,0 +1,32 @@
+{
+  "header": {},
+"nav": {
+  "login": "התחברות",
+  "logout": "התנתקות",
+  "portfolio": "פרויקטים",
+  "Resume": "קורות חיים",
+  "Blog": "בלוג",
+  "Add Article": "הוסף מאמר",
+  "Listing": "רשימה",
+  "Counter": "מונה",
+  "Toggle": "מתג",
+  "Object": "אובייקט"
+},
+"main": {
+  "portfolio": "פרויקטים",
+  "header Subtitle":"מפתח מלא הערמה",
+  "Contact": "פרטי קשר",
+  "experience": "ניסיון מקצועי",
+  "background": "השכלה",
+  "School_1": "בית הספר מוריה - תעודת בגרות",
+  "School_2": "הדרכה בעיצוב גרפי - בית הספר לעיצוב גרפי MJM",
+  "School_2_resume": "שליטה בפוטושופ, אילוסטרטור ולמידה לאינטגרציה באינטרנט",
+  "School_3": "הכשרת מדינה - MySql ו- Html",
+  "School_3_resume": "הכשרה ב-HTML 5 ו- MySql.",
+  "School_4": "הכשרת Full Stack",
+  "School_4_resume": "למידת JS, React, NodeJS, MongoDB. התמחות ב CSS/HTML 5 ו- Mysql",
+  "Expertise": "מיומנויות טכניות"
+},
+"footer": {}
+}
+

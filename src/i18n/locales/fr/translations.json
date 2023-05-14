@@ -1,0 +1,31 @@
+{
+  "header": {},
+  "nav": {
+    "login": "S'authentifier",
+    "logout": "Deconnexion",
+    "portfolio": "Projets",
+    "Resume": "CV",
+    "Blog": "Blog",
+    "Add Article": "Ajouter un article",
+    "Listing": "Liste",
+    "Counter": "Compteur",
+    "Toggle": "Basculer",
+    "Object": "Objet"
+  },
+  "main": {
+    "portfolio": "Projets",
+    "header Subtitle":"Developpeur Full Stack",
+    "Contact": "Informations de contact",
+    "experience": "Expérience professionnelle",
+    "background": "Formation",
+    "School_1": "BAC - Ecole Moria",
+    "School_2": "Formation D'Infographie -  Ecole MJM Graphic Design",
+    "School_2_resume": "Maitrise de photoshop, Illustrator et apprentissage a l'integration Web",
+    "School_3": "Formation D'Etat -  MySql et Html",
+    "School_3_resume": "Formation de HTML 5 et Mysql.",
+    "School_4": "Formation Full Stack",
+    "School_4_resume": "Aprrentissage de JS, React, NodeJS, MongoDB. Perfectionnement dans CSS/HTML 5 et Mysql",
+    "Expertise": "Compétences techniques"
+  },
+  "footer": {}
+}

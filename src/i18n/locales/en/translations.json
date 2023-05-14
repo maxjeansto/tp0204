@@ -1,0 +1,32 @@
+{
+"header": {},
+"nav": {
+  "login": "Authenticate",
+  "logout": "Logout",
+  "portfolio": "Projects",
+  "Resume": "Resume",
+  "Blog": "Blog",
+  "Add Article": "Add an Article",
+  "Listing": "Listing",
+  "Counter": "Counter",
+  "Toggle": "Toggle",
+  "Object": "Object"
+},
+"main": {
+  "portfolio": "Projects",
+  "header Subtitle":"Full Stack Developer",
+  "Contact": "Contact Information",
+  "experience": "Experience",
+  "background": "Background",
+  "School_1": "High School Diploma - Moria School",
+  "School_2": "Graphics Design Training - MJM Graphic Design School",
+  "School_2_resume": "Proficient in Photoshop, Illustrator, and Web Integration Learning",
+  "School_3": "State Certification - MySql and Html",
+  "School_3_resume": "HTML 5 and MySql Training.",
+  "School_4": "Full Stack Training",
+  "School_4_resume": "Learning JS, React, NodeJS, MongoDB. Advanced Training in CSS/HTML 5 and MySql",
+  "Expertise": "Technical Skills"
+},
+"footer": {}
+}
+

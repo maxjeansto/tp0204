@@ -1,10 +1,13 @@
 import { Typography, Container, Box, Grid, Card, CardActionArea, CardContent, CardMedia } from '@mui/material';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
+import i18n from '../i18n/config';
 
 
 function Portfolio() {
-
+    const [language, setLanguage] = useState();
+    const { t } = useTranslation();
     const [projects, setProjects] = useState();
 
     useEffect(() => {
@@ -19,12 +22,27 @@ function Portfolio() {
         });
 
     }, [])
+    useEffect(() => {
+        const handleChangeLanguage = () => {
+          // La langue a changé, faites quelque chose ici...
+          console.log('La langue a changé ! Nouvelle langue :', i18n.language);
+          setLanguage(i18n.language)
+        };
+        
+        i18n.on('languageChanged', handleChangeLanguage);
+    
+        // Nettoyage : supprime l'écouteur d'événement lorsque le composant est démonté
+        return () => {
+          i18n.off('languageChanged', handleChangeLanguage);
+        };
+      }, [i18n]);
+
     return (
         <div>
             <Container maxWidth="lg">
                 <Box mt={4} mb={4}>
                     <Typography variant="h4" align="center">
-                        Projets
+                        {t("main.portfolio")}
                     </Typography>
                 </Box>
 
@@ -39,7 +57,16 @@ function Portfolio() {
                                             {projects.title}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
-                                            {projects.resume}
+                                            { (() => {
+                                                switch (language) {
+                                                    case 'fr' : 
+                                                        return projects.resume;
+                                                    case 'en' :
+                                                        return projects.resume_en;
+                                                    case 'he' :
+                                                        return projects.resume_he;
+                                                    default: 
+                                                        return projects.resume; }})()}
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>

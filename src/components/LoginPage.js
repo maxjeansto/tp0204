@@ -8,7 +8,9 @@ import {
   Typography,
   TextField,
   Button,
-  Paper
+  Paper,
+  FormControlLabel,
+  Checkbox
 } from '@mui/material';
 import { LockOutlined } from '@mui/icons-material';
 import Alert from '@mui/material/Alert';
@@ -20,6 +22,12 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorAuth, setErrorAuth] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  }
+
 
 
   const handleSubmit = (e) => {
@@ -82,11 +90,20 @@ const LoginPage = () => {
                 fullWidth
                 name="password"
                 label="Mot de passe"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 autoComplete="current-password"
                 value={password}
                 onChange={handlePassword}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={showPassword}
+                    onChange={togglePasswordVisibility}
+                  />
+                }
+                label="Afficher le mot de passe"
               />
               <Button
                 type="submit"

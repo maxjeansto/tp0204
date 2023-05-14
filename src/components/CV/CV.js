@@ -16,9 +16,11 @@ import { Email, Phone, LocationOn, ExpandMore } from "@mui/icons-material";
 import { deepOrange } from '@mui/material/colors';
 import { useTheme } from '@mui/material/styles';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 
 const Curriculum = () => {
+    const { t } = useTranslation()
     const theme = useTheme();
     const [userInfo, setUserInfo] = useState();
     const [workInfo, setWorkInfo] = useState();
@@ -62,7 +64,7 @@ const Curriculum = () => {
                                 Maxime Elie Saada
                             </Typography>
                             <Typography variant="subtitle1" component="h2" gutterBottom style={{ color: "white" }}>
-                                Développeur Full Stack
+                            {t("main.header Subtitle")}
                             </Typography>
                         </Grid>
 
@@ -75,7 +77,7 @@ const Curriculum = () => {
                 {userInfo?.map((userInfo, index) => (
                     <Box my={2} key={index}>
                         <Typography variant="h6" component="h3">
-                            Informations de contact
+                        {t("main.Contact")}
                         </Typography>
                         <ListItem disableGutters>
                             <ListItemIcon>
@@ -99,7 +101,7 @@ const Curriculum = () => {
                     
                 <Box my={2} >
                     <Typography mb={1} variant="h6" component="h3" style={{ color: theme.palette.secondary.main }}>
-                        Expérience professionnelle
+                    {t("main.experience")}
                     </Typography>
                     {workInfo?.map((workInfo) => (
                     <Box key={workInfo.id} mb={1}>
@@ -119,11 +121,11 @@ const Curriculum = () => {
                 </Box>
                 <Box my={2}>
                     <Typography variant="h6" component="h3" style={{ color: theme.palette.secondary.main }}>
-                        Formation
+                    {t("main.background")}
                     </Typography>
                     <Accordion>
                         <AccordionSummary expandIcon={<ExpandMore />}>
-                            <Typography  sx={{ mr: 3, fontWeight: "bold" }} variant="subtitle1">BAC - Ecole Moria </Typography>
+                            <Typography  sx={{ mr: 3, fontWeight: "bold" }} variant="subtitle1">{t("main.School_1")}</Typography>
                             <Typography variant="subtitle2" color="text.secondary">
                                 1999
                             </Typography>
@@ -136,47 +138,47 @@ const Curriculum = () => {
                     </Accordion>
                     <Accordion>
                         <AccordionSummary expandIcon={<ExpandMore />}>
-                            <Typography  sx={{ mr: 3, fontWeight: "bold" }} variant="subtitle1">Formation D'InfoGraphie -  Ecole MJM Graphic Design</Typography>
+                            <Typography  sx={{ mr: 3, fontWeight: "bold" }} variant="subtitle1">{t("main.School_2")}</Typography>
                             <Typography variant="subtitle2" color="text.secondary">
                                 2000 - 2001
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography variant="body1">
-                                Maitrise de photoshop, Illustrator et apprentissage a l'integration Web
+                            {t("main.School_2_resume")}
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>
                         <AccordionSummary expandIcon={<ExpandMore />}>
-                            <Typography  sx={{ mr: 3, fontWeight: "bold" }} variant="subtitle1">Formation D'Etat -  MySql et Html</Typography>
+                            <Typography  sx={{ mr: 3, fontWeight: "bold" }} variant="subtitle1">{t("main.School_3")}</Typography>
                             <Typography variant="subtitle2" color="text.secondary">
                                 2006
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography variant="body1">
-                               Formation de HTML 5 et Mysql.
+                            {t("main.School_3_resume")}
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>
                         <AccordionSummary expandIcon={<ExpandMore />}>
-                            <Typography  sx={{ mr: 3, fontWeight: "bold" }} variant="subtitle1">Formatio Full Stack</Typography>
+                            <Typography  sx={{ mr: 3, fontWeight: "bold" }} variant="subtitle1">{t("main.School_4")}</Typography>
                             <Typography variant="subtitle2" color="text.secondary">
                                 2023
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography variant="body1">
-                               Aprrentissage de JS, React, NodeJS, MongoDB. Perfectionnement dans CSS/HTML 5 et Mysql
+                            {t("main.School_4_resume")}
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
                 </Box>
                 <Box my={2}>
                     <Typography variant="h6" component="h3" style={{ color: theme.palette.secondary.main }}>
-                        Compétences techniques
+                    {t("main.Expertise")}
                     </Typography>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>

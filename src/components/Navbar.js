@@ -17,25 +17,29 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import DropI18N from './dropI18N';
+import { useTranslation } from 'react-i18next';
 
 
 
 function Navbar() {
   const [isAuth, setisAuth] = useState(false);
 
+  const { t } = useTranslation()
+
   const mainLinks = [
-    { path: '/portfolio', label: 'Portfolio', authRequired: false },
-    { path: '/useffect', label: 'Blog', authRequired: true },
-    { path: '/cv', label: 'CV', authRequired: false },
-    { path: '/addarticle', label: 'Add Article', authRequired: true }
+    { path: '/portfolio', label: t("nav.portfolio"), authRequired: false },
+    { path: '/useffect', label: t("nav.Blog"), authRequired: true },
+    { path: '/cv', label: t("nav.Resume"), authRequired: false },
+    { path: '/addarticle', label: t("nav.Add Article"), authRequired: true }
 
   ];
 
   const menuLinks = [
-    { path: '/list', label: 'Listing', authRequired: true },
-    { path: '/counter', label: 'Counter', authRequired: true },
-    { path: '/toogle', label: 'Toggle', authRequired: true },
-    { path: '/object', label: 'Object', authRequired: true },
+    { path: '/list', label: t("nav.Listing"), authRequired: true },
+    { path: '/counter', label: t("nav.Counter"), authRequired: true },
+    { path: '/toogle', label: t("nav.Toggle"), authRequired: true },
+    { path: '/object', label: t("nav.Object"), authRequired: true },
   ];
 
 
@@ -96,13 +100,13 @@ function Navbar() {
 
       {isAuth ? (
         <ListItem onClick={() => {
-          localStorage.setItem("tokenBlog", "")
+          localStorage.setItem("tokenBlog", "") 
           window.location.reload()
         }}>
-          <ListItemText primary="Logout" />
+          <ListItemText primary={t("nav.logout")} />
         </ListItem>) : (<ListItem component={Link}
           to="/login">
-          <ListItemText primary="Login" /> </ListItem>)}
+          <ListItemText primary={t("nav.login")} /> </ListItem>)}
 
 
       <Collapse in={collapseOpen} timeout="auto" unmountOnExit>
@@ -142,6 +146,7 @@ function Navbar() {
                 </Button>
               ))}
 
+
             {isAuth ? (
               <Button
                 aria-controls="menu"
@@ -180,6 +185,7 @@ function Navbar() {
             </Menu>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <DropI18N />
             {isAuth ? (<Button
               onClick={() => {
                 localStorage.setItem("tokenBlog", "")
@@ -192,7 +198,7 @@ function Navbar() {
                 },
               }}
             >
-              <Typography variant="body1">Logout</Typography>
+              <Typography variant="body1">{t("nav.logout")}</Typography>
             </Button>) : (
 
               <Button
@@ -205,8 +211,9 @@ function Navbar() {
                   },
                 }}
               >
-                <Typography variant="body1">Login</Typography>
+                <Typography variant="body1">{t("nav.login")}</Typography>
               </Button>)}
+
           </Box>
 
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
