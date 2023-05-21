@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n/config';
+import { Button } from '@mui/material';
 
 
 function Portfolio() {
     const [language, setLanguage] = useState();
     const { t } = useTranslation();
     const [projects, setProjects] = useState();
+    const [filter, setFilter] = useState('all');
 
     useEffect(() => {
         axios.get('https://react-1604-fbde33.appdrag.site/api/getPorfolio', {
@@ -35,7 +37,15 @@ function Portfolio() {
         return () => {
           i18n.off('languageChanged', handleChangeLanguage);
         };
-      }, [i18n]);
+      }, []);
+      const handleFilterChange = (newFilter) => {
+        setFilter(newFilter);
+    };
+
+    const filteredProjects = filter === 'all' ? projects : projects?.filter(project => project.tag === filter);
+
+
+  
 
     return (
         <div>
@@ -45,16 +55,23 @@ function Portfolio() {
                         {t("main.portfolio")}
                     </Typography>
                 </Box>
+                <Box sx={{ marginBottom: 2 }}>
+                    <Button onClick={() => handleFilterChange('all')}>Tous</Button>
+                    <Button onClick={() => handleFilterChange('HTML')}>HTML</Button>
+                    <Button onClick={() => handleFilterChange('React')}>React</Button>
+                    <Button onClick={() => handleFilterChange('JS')}>JS</Button>
+                    <Button onClick={() => handleFilterChange('Design')}>Design</Button>
+                </Box>
 
                 <Grid container spacing={4}>
-                    {projects?.map((projects, index) => (
+                {filteredProjects?.map((project, index) => (
                         <Grid item xs={12} sm={6} md={4} key={index}>
                             <Card>
                                 <CardActionArea>
-                                    <CardMedia component="img" height="200" image={projects.image} alt={projects.title} />
+                                    <CardMedia component="img" height="200" image={project.image} alt={project.title} />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="div">
-                                            {projects.title}
+                                            {project.title}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
                                             { (() => {

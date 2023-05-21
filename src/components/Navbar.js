@@ -40,6 +40,7 @@ function Navbar() {
     { path: '/counter', label: t("nav.Counter"), authRequired: true },
     { path: '/toogle', label: t("nav.Toggle"), authRequired: true },
     { path: '/object', label: t("nav.Object"), authRequired: true },
+    { path: '/usereducerapp', label: t("UseReducer"), authRequired: true },
   ];
 
 
@@ -82,7 +83,7 @@ function Navbar() {
 
   const drawer = (
     <List>
-      <ListItem> <DropI18N sx={{color: 'black'}} /></ListItem>
+      <ListItem> <DropI18N /></ListItem>
       {mainLinks
         .filter((link) => isAuth || !link.authRequired)
         .map((link, index) => (

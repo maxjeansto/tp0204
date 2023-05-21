@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Box, Grid, Card, CardContent, Typography, CardMedia } from "@mui/material";
+import { Box, Grid, Card, CardContent, Typography, CardMedia, TextField } from "@mui/material";
 import {Link} from "react-router-dom"
 import { Link as MuiLink } from '@mui/material';
 import i18n from "../../i18n/config";
@@ -10,6 +10,7 @@ const UseEffectCompo = () => {
 
     const [data, setdata] = useState();
     const [language, setLanguage] = useState('fr');
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         console.log("Mon composant est monté")
@@ -39,12 +40,29 @@ const UseEffectCompo = () => {
       return () => {
         i18n.off('languageChanged', handleChangeLanguage);
       };
-    }, [i18n]);
+    }, []);
+
+    const filteredData = data?.filter(item => 
+      item.title.toLowerCase().includes(search.toLowerCase()) ||
+      item.article.toLowerCase().includes(search.toLowerCase())
+  );
+
+    
 
     return (
         <Box maxWidth="sm" sx={{ textAlign: "center", mt: 8, margin: '0 auto' }}>
+           <Box sx={{ marginBottom: '20px', marginTop: '30px', width: '100%' }}>
+                <TextField
+                    label="Rechercher"
+                    variant="outlined"
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                    fullWidth
+                    sx={{ width: '100%' }}
+                />
+            </Box>
       <Grid container spacing={4} justifyContent="center" sx={{mt: 3, mb: 2}}>
-        {data?.map((data, index) => (
+      {filteredData?.map((item, index) => (
          <MuiLink
          key={data.id}
          component={Link}
@@ -60,18 +78,18 @@ const UseEffectCompo = () => {
             <Card sx={{ maxWidth: 600 }}>
               <CardMedia
                 sx={{ height: 240 }}
-                image={data.urlimage}
+                image={item.urlimage}
                 title="green iguana"
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                 {(() => { 
                     if (language === 'fr') {
-                      return data.title;
+                      return item.title;
                     } else if (language === 'en') {
-                      return data.title_en;
+                      return item.title_en;
                     } else if (language === 'he') {
-                      return data.title_he;
+                      return item.title_he;
                     }
     
                       })()}
@@ -79,18 +97,18 @@ const UseEffectCompo = () => {
                 <Typography variant="body2" color="text.secondary">
                 {(() => { 
                     if (language === 'fr') {
-                      return data.article;
+                      return item.article;
                     } else if (language === 'en') {
-                      return data.article_en;
+                      return item.article_en;
                     } else if (language === 'he') {
-                      return data.article_he;
+                      return item.article_he;
                     }
     
                       })()}
                 </Typography>
               </CardContent>
               <Typography variant="subtitle2" color="text.secondary">
-                  {data.author}
+                  {item.author}
                 </Typography>
             </Card>
           </Grid>

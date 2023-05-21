@@ -11,6 +11,7 @@ import BlogArticle from './components/Article/Article';
 import LoginPage from './components/LoginPage';
 import Navbar from './components/Navbar';
 import BlogForm from './components/Article/AddArticle';
+import UrApp from './components/useReducer';
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
       <Route path="/counter" element={<Counter />} />
       <Route path="/toogle" element={<Toggle />} />
       <Route path="/object" element={<ExempleObject />} />
+      <Route path="/usereducerapp" element={<UrApp />} />
       <Route path="/useffect" element={<UseEffectCompo />} />
       <Route path="/cv" element={<CurriCulum />} />
       <Route path="/portfolio" element={<Portfolio />} />
