@@ -64,9 +64,9 @@ const UseEffectCompo = () => {
       <Grid container spacing={4} justifyContent="center" sx={{mt: 3, mb: 2}}>
       {filteredData?.map((item, index) => (
          <MuiLink
-         key={data.id}
+         key={item.id}
          component={Link}
-         to={`/article/${data.id}`}
+         to={`/article/${item.id}`}
          sx={{
            textDecoration: 'none',
            '&:hover': {
