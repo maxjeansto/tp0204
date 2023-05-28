@@ -64,7 +64,7 @@ const Curriculum = () => {
         return () => {
             i18n.off('languageChanged', handleChangeLanguage);
         };
-    }, [i18n]);
+    }, []);
 
 
 
@@ -90,7 +90,7 @@ const Curriculum = () => {
             </Box>
 
 
-            <Box style={{ backgroundColor: '#f5f5f5', padding: theme.spacing(2), borderRadius: theme.shape.borderRadius }}>
+            <Box style={{ padding: theme.spacing(2), borderRadius: theme.shape.borderRadius }}>
                 {userInfo?.map((userInfo, index) => (
                     <Box my={2} key={index}>
                         <Typography variant="h6" component="h3">

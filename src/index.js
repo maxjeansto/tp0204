@@ -5,16 +5,19 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import "./i18n/config"
+import { Provider } from 'react-redux';
+import store from './components/redux/store/store';
+import { ThemeProvider } from './components/theme'; // Ajustez le chemin selon l'emplacement de votre fichier theme.js
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
    <BrowserRouter>
-      <App />
+    <Provider store={store} >
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    </Provider>
     </BrowserRouter>
-  </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

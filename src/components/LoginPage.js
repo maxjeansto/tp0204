@@ -14,6 +14,8 @@ import {
 } from '@mui/material';
 import { LockOutlined } from '@mui/icons-material';
 import Alert from '@mui/material/Alert';
+import {setAuth} from "./redux/slices/auth.slice"
+import { useDispatch } from 'react-redux';
 
 
 
@@ -23,6 +25,9 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [errorAuth, setErrorAuth] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
+const dispatch = useDispatch()
+
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -47,6 +52,7 @@ const LoginPage = () => {
         setErrorAuth(false)
         console.log('autho reussie')
         localStorage.setItem("tokenBlog", response.data.Table[0].token)
+        dispatch(setAuth(response.data.Table[0]))
         navigate("/")
       }
     });

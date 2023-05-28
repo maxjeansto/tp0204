@@ -13,19 +13,26 @@ import ListItemText from '@mui/material/ListItemText';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Collapse from '@mui/material/Collapse';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import DropI18N from './dropI18N';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getToken } from './redux/slices/auth.slice';
+import { ThemeContext } from './theme';
+import { Brightness4 } from '@mui/icons-material';
 
 
 
 function Navbar() {
-  const [isAuth, setisAuth] = useState(false);
 
+
+
+  const { toggleTheme } = React.useContext(ThemeContext);
   const { t } = useTranslation()
+  const getTokenSlice = useSelector(getToken)
 
   const mainLinks = [
     { path: '/portfolio', label: t("nav.portfolio"), authRequired: false },
@@ -44,16 +51,6 @@ function Navbar() {
   ];
 
 
-  useEffect(() => {
-    if (localStorage.getItem("tokenBlog")) {
-      console.log("localstorage plein je suis auth")
-      setisAuth(true)
-
-    } else {
-      console.log("je suis pa auth")
-      setisAuth(false)
-    }
-  }, []);
 
 
 
@@ -84,14 +81,21 @@ function Navbar() {
   const drawer = (
     <List>
       <ListItem> <DropI18N /></ListItem>
+      <ListItem> <IconButton
+              color="inherit"
+              aria-label="Toggle theme"
+              onClick={toggleTheme}  // Ajoutez cette ligne
+            >
+              <Brightness4 /> 
+            </IconButton></ListItem>
       {mainLinks
-        .filter((link) => isAuth || !link.authRequired)
+        .filter((link) => getTokenSlice || !link.authRequired)
         .map((link, index) => (
           <ListItem button key={`${link.path}-${index}`} component={Link} to={link.path} onClick={toggleDrawer(false)}>
             <ListItemText primary={link.label} />
           </ListItem>
         ))}
-      {isAuth ? (<ListItem button onClick={handleClick}>
+      {getTokenSlice ? (<ListItem button onClick={handleClick}>
         <ListItemText primary="React JS" />
         {collapseOpen ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
@@ -100,9 +104,9 @@ function Navbar() {
 
       )}
 
-      {isAuth ? (
+      {getTokenSlice ? (
         <ListItem onClick={() => {
-          localStorage.setItem("tokenBlog", "") 
+          localStorage.setItem("tokenBlog", "")
           window.location.reload()
         }}>
           <ListItemText primary={t("nav.logout")} />
@@ -114,7 +118,7 @@ function Navbar() {
       <Collapse in={collapseOpen} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           {menuLinks
-            .filter((link) => isAuth || !link.authRequired)
+            .filter((link) => getTokenSlice || !link.authRequired)
             .map((link, index) => (
               <ListItem button key={`${link.path}-${index}`} component={Link} to={link.path} onClick={toggleDrawer(false)} sx={{ pl: 4 }}>
                 <ListItemText primary={link.label} />
@@ -123,7 +127,7 @@ function Navbar() {
         </List>
 
       </Collapse>
-      
+
     </List>
   );
 
@@ -133,7 +137,7 @@ function Navbar() {
         <Toolbar disableGutters>
           <Box sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1 }}>
             {mainLinks
-              .filter((link) => isAuth || !link.authRequired)
+              .filter((link) => getTokenSlice || !link.authRequired)
               .map((link, index) => (
                 <Button
                   key={`${link.path}-${index}`}
@@ -151,7 +155,7 @@ function Navbar() {
               ))}
 
 
-            {isAuth ? (
+            {getTokenSlice ? (
               <Button
                 aria-controls="menu"
                 aria-haspopup="true"
@@ -175,7 +179,7 @@ function Navbar() {
               onClose={handleMenuClose}
             >
               {menuLinks
-                .filter((link) => isAuth || !link.authRequired)
+                .filter((link) => getTokenSlice || !link.authRequired)
                 .map((link, index) => (
                   <MenuItem
                     key={`${link.path}-${index}`}
@@ -189,8 +193,15 @@ function Navbar() {
             </Menu>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <IconButton
+              color="inherit"
+              aria-label="Toggle theme"
+              onClick={toggleTheme}  // Ajoutez cette ligne
+            >
+              <Brightness4 /> 
+            </IconButton>
             <DropI18N />
-            {isAuth ? (<Button
+            {getTokenSlice ? (<Button
               onClick={() => {
                 localStorage.setItem("tokenBlog", "")
                 window.location.reload()

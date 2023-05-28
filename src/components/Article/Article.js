@@ -3,12 +3,17 @@ import axios from "axios";
 import { Typography, Box, Grid, Card, CardContent, CardMedia } from '@mui/material';
 import { useLocation } from "react-router-dom";
 import i18n from "../../i18n/config";
+import { useDispatch } from "react-redux";
+import { setArticle } from "../redux/slices/article.slice";
 
 const BlogArticle = () => {
+  const dispatch = useDispatch();
 const [language, setLanguage] = useState();
   const [data, setdata] = useState();
   let location = useLocation()
   console.log("location", location.pathname.slice(9))
+  
+  
   useEffect(() => {
     axios.get('https://react-1604-fbde33.appdrag.site/api/getAllArticlesbyid', {
       params: {
@@ -19,8 +24,13 @@ const [language, setLanguage] = useState();
     }).then(function (response) {
       console.log(response.data);
       setdata(response.data.Table[0])
+      console.log("Dispatching setArticle with payload: ", response.data.Table[0]); // Ajout du console log ici
+      dispatch(setArticle(response.data.Table[0]))
     });
-  }, []);
+  }, [dispatch, location]);
+
+
+
   useEffect(() => {
     const handleChangeLanguage = () => {
       // La langue a changé, faites quelque chose ici...
@@ -34,7 +44,7 @@ const [language, setLanguage] = useState();
     return () => {
       i18n.off('languageChanged', handleChangeLanguage);
     };
-  }, [i18n]);
+  }, []);
 
   
 

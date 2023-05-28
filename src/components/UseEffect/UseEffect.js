@@ -4,13 +4,17 @@ import { Box, Grid, Card, CardContent, Typography, CardMedia, TextField } from "
 import {Link} from "react-router-dom"
 import { Link as MuiLink } from '@mui/material';
 import i18n from "../../i18n/config";
+import { useDispatch, useSelector } from "react-redux";
+import { setArticle } from "../redux/slices/article.slice";
+import { getArticle } from "../redux/slices/article.slice";
 
 
 const UseEffectCompo = () => {
-
+  const dispatch = useDispatch();
     const [data, setdata] = useState();
     const [language, setLanguage] = useState('fr');
     const [search, setSearch] = useState("");
+    const getArticleSlice = useSelector(getArticle)
 
     useEffect(() => {
         console.log("Mon composant est monté")
@@ -23,9 +27,10 @@ const UseEffectCompo = () => {
         }).then(function (response) {
             console.log(response.data);
             setdata(response.data.Table)
-        });
-
-    }, [])
+            dispatch(setArticle(response.data.Table[0]))
+          });
+        }, [dispatch]);
+      
 
     useEffect(() => {
       const handleChangeLanguage = () => {
@@ -43,8 +48,8 @@ const UseEffectCompo = () => {
     }, []);
 
     const filteredData = data?.filter(item => 
-      item.title.toLowerCase().includes(search.toLowerCase()) ||
-      item.article.toLowerCase().includes(search.toLowerCase())
+      getArticleSlice.title.toLowerCase().includes(search.toLowerCase()) ||
+      getArticleSlice.article.toLowerCase().includes(search.toLowerCase())
   );
 
     
@@ -62,11 +67,11 @@ const UseEffectCompo = () => {
                 />
             </Box>
       <Grid container spacing={4} justifyContent="center" sx={{mt: 3, mb: 2}}>
-      {filteredData?.map((item, index) => (
+      {filteredData?.map((getArticleSlice, index) => (
          <MuiLink
-         key={item.id}
+         key={getArticleSlice.id}
          component={Link}
-         to={`/article/${item.id}`}
+         to={`/article/${getArticleSlice.id}`}
          sx={{
            textDecoration: 'none',
            '&:hover': {
@@ -78,18 +83,18 @@ const UseEffectCompo = () => {
             <Card sx={{ maxWidth: 600 }}>
               <CardMedia
                 sx={{ height: 240 }}
-                image={item.urlimage}
+                image={getArticleSlice.urlimage}
                 title="green iguana"
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                 {(() => { 
                     if (language === 'fr') {
-                      return item.title;
+                      return getArticleSlice.title;
                     } else if (language === 'en') {
-                      return item.title_en;
+                      return getArticleSlice.title_en;
                     } else if (language === 'he') {
-                      return item.title_he;
+                      return getArticleSlice.title_he;
                     }
     
                       })()}
@@ -97,18 +102,18 @@ const UseEffectCompo = () => {
                 <Typography variant="body2" color="text.secondary">
                 {(() => { 
                     if (language === 'fr') {
-                      return item.article;
+                      return getArticleSlice.article;
                     } else if (language === 'en') {
-                      return item.article_en;
+                      return getArticleSlice.article_en;
                     } else if (language === 'he') {
-                      return item.article_he;
+                      return getArticleSlice.article_he;
                     }
     
                       })()}
                 </Typography>
               </CardContent>
               <Typography variant="subtitle2" color="text.secondary">
-                  {item.author}
+                  {getArticleSlice.author}
                 </Typography>
             </Card>
           </Grid>
